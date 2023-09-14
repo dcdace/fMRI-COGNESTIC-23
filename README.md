@@ -1,0 +1,1 @@
+# Materials for the **"fMRI analysis"** workshop at the [Cognitive Neuroscience Skills Training In Cambridge-2023](https://www.mrc-cbu.cam.ac.uk/cognestic-2023/) (COGNESTIC-2023). 
