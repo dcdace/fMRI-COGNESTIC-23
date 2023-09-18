@@ -3,11 +3,9 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - dcm2niix=1.0.20210317
-  - python=3.9
+  - python=3.10.7
   - ipython
   - jupyter
-  - jupyter_contrib_nbextensions
   - matplotlib
   - numpy
   - pandas
