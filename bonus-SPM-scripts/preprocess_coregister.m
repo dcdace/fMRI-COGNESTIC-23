@@ -16,7 +16,7 @@ meanFunc = spm_select('FPList', outdir, '^mean.*\.nii$');
 % get the list of all BOLD files that need to be co-registered
 boldFiles = cellstr(spm_select('FPList', outdir, ['^' prfx '.*bold\.nii$']));
 
-% Coregister T1w to the mean functional
+% Coregister 
 matlabbatch{1}.spm.spatial.coreg.estimate.ref               = {T1w};
 matlabbatch{1}.spm.spatial.coreg.estimate.source            = {meanFunc};
 matlabbatch{1}.spm.spatial.coreg.estimate.other             = boldFiles;

@@ -6,7 +6,7 @@
 %
 % =========================================================
 
-% Add path to SPM12 and preprocessing scripts
+% Add path to SPM12 
 addpath('/imaging/local/software/spm_cbu_svn/releases/spm12_latest/')
 
 % =========================================================
@@ -17,7 +17,7 @@ addpath('/imaging/local/software/spm_cbu_svn/releases/spm12_latest/')
 inputdir  = '/imaging/correia/da05/workshops/2023-09-COGNESTIC/demo/FaceRecognition/results/SPM12';
 % Location of the first-level results
 firstleveldir = fullfile(inputdir, 'first_level', 'model01');
-% Where to save the outpyt
+% Where to save the output
 outpth = fullfile(inputdir, 'group_level', 'model01');
 if ~exist(outpth, 'dir')
     mkdir(outpth);
