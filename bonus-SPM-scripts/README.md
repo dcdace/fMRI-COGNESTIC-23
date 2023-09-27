@@ -1,6 +1,6 @@
 # Bonus materials - SPM analysis scripts
 
-Example SPM12 scripts for analysing the same dataset as in the main workshop materials where we use Nilearn. These scripts are based on https://www.frontiersin.org/articles/10.3389/fnins.2019.00300/full. 
+Example SPM12 scripts for analysing the same dataset as in the main workshop materials where we use fMRIprep and Nilearn. These scripts are based on https://www.frontiersin.org/articles/10.3389/fnins.2019.00300/full. 
 
 Assumes that dataset is formated according to [BIDS](https://bids.neuroimaging.io/). 
 
