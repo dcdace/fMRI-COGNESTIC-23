@@ -45,7 +45,7 @@ fmri_glm = FirstLevelModel(t_r = TR,
                            hrf_model = 'spm',
                            drift_model = 'Cosine',
                            high_pass = 1./128,
-                           slice_time_ref = TR/2, 
+                           slice_time_ref = 0.5, 
                            smoothing_fwhm = 6,
                            signal_scaling = False,
                            minimize_memory = False)
@@ -77,11 +77,11 @@ for design_matrix in design_matrices:
     n_columns = design_matrix.shape[1] #number of predictors in our model
     def pad_vector(contrast_, n_columns):    
         return np.hstack((contrast_, np.zeros(n_columns - len(contrast_))))
-    contrasts = {'FamousUnfamiliar': pad_vector([1, 0, 0, -1], n_columns),
-                'UnfamiliarFamous': pad_vector([-1, 0, 0, 1], n_columns),
-                'FacesScrambled': pad_vector([1, 0, -2, 1], n_columns),
-                'ScrambledFaces': pad_vector([-1, 0, 2, -1], n_columns),
-                'EffectsOfInterest': np.eye(n_columns)[[0,2,3]]}
+    contrasts = {'FamousUnfamiliar': pad_vector([1, 0, -1], n_columns),
+                'UnfamiliarFamous': pad_vector([-1, 0, 1], n_columns),
+                'FacesScrambled': pad_vector([1/2, -1, 1/2], n_columns),
+                'ScrambledFaces': pad_vector([-1/2, 1, -1/2], n_columns),
+                'EffectsOfInterest': np.eye(n_columns)[[0,1,2]]}
     contrast_list.append(contrasts)
 
 # Compute the contrasts
