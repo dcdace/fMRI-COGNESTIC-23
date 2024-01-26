@@ -8,7 +8,7 @@ destination = '/imaging/correia/da05/workshops/2023-09-COGNESTIC/demo/FaceRecogn
 nsub = 16
 nrun = 9
 
-for i in range(1, nsub):
+for i in range(1, nsub+1):
     sub = f'sub-{i:02d}'
     source_dir = os.path.join(source, sub, 'ses-mri', 'func')
     source_list = sorted([f for f in os.listdir(source_dir) if f.endswith('.tsv')])
