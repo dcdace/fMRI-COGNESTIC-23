@@ -40,6 +40,12 @@ end
 % ADDITIONAL PARAMETERS FROM BIDS METADATA
 % =========================================================
 
+% Get subject IDs from the BIDS dataset
+subs = spm_BIDS(param.BIDS, 'subjects');
+% How many subject are there
+nsub = numel(subs);
+
+
 % Retrieve the metadata
 metadata = spm_BIDS(param.BIDS,'metadata', 'sub', subs{1}, 'run', '01', 'task', param.task, 'type', 'bold');
 
@@ -53,11 +59,6 @@ param.rslice    = param.TR/2;
 % =========================================================
 % PREPROCESS ALL SUBJECTS
 % =========================================================
-
-% Get subject IDs from the BIDS dataset
-subs = spm_BIDS(param.BIDS, 'subjects');
-% How many subject are there
-nsub = numel(subs);
 
 % Loop through subjects
 parfor (s = 1:nsub, numworkers)
