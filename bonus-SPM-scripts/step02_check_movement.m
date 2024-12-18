@@ -18,6 +18,8 @@ addpath('/imaging/local/software/spm_cbu_svn/releases/spm12_latest/')
 % Location of the preprocessed data
 datadir = '/imaging/correia/da05/workshops/2023-09-COGNESTIC/demo/FaceRecognition/data/bids/derivatives/SPM12';
 
+task = 'tnt';
+
 % Get all sujbjects
 subs = cellstr(spm_select('List',datadir, 'dir','^sub-'));
 nsub = numel(subs);
@@ -28,12 +30,12 @@ for s = 1:nsub
     
     disp(['---subject ' sub ' -----']);
 
-    rp_files = cellstr(spm_select('FPList', fullfile(datadir, sub, 'func'), '^rp.*\.txt$'));
+    rp_files = cellstr(spm_select('FPList', fullfile(datadir, sub, 'func'), ['^.*task-' task '_.*\.txt$']));
     saveMovement = fullfile(datadir, 'movement');
     if ~exist(saveMovement,'dir')
         mkdir(saveMovement);
     end
-    motname = fullfile(saveMovement, [sub '_' date '.png']);
+    motname = fullfile(saveMovement, [sub '_task-' task '_' date '.png']);
     plotNr = 0;
     printfig = figure(1);
     set(gcf, 'Position', get(0, 'Screensize'));
@@ -71,8 +73,10 @@ for s = 1:nsub
    
 end
 % Save max movements to .csv files
-fname = fullfile(saveMovement, 'max_mm.csv');
-writecell(Max_mm, fname)
+fname = fullfile(saveMovement, ['task-' task '_max_mm.csv']);
+T_mm = cell2table(Max_mm);
+writetable(T_mm, fname, 'WriteVariableNames', false)
 
-fname = fullfile(saveMovement, 'max_dg.csv');
-writecell(Max_dg, fname)
+fname = fullfile(saveMovement, ['task-' task '_max_dg.csv']);
+T_dg = cell2table(Max_dg);
+writetable(T_dg, fname, 'WriteVariableNames', false)
