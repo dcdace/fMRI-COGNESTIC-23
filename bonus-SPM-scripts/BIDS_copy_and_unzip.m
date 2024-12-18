@@ -68,14 +68,14 @@ nrun = numel(runs);
 % For each run, get events .tsv file from BIDS and transfer data into conds
 % structure and save the .mat file
 for r = 1:nrun
-    events = spm_load(char(spm_BIDS(param.BIDS,'data','modality','func','type','events','sub',sub,'run',runs{r})));
+    events = spm_load(char(spm_BIDS(param.BIDS,'data','modality','func','type','events','task', param.task,'sub',sub,'run',runs{r})));
     clear conds
     for t = 1:numel(param.trialtypes)
         conds.names{t}      = param.trialtypes{t};
         conds.durations{t}  = 0;
         conds.onsets{t}     = events.onset(strcmpi(events.trial_type, param.trialtypes{t}));
     end
-    save(fullfile(subjDir, 'func', sprintf('sub-%s_run-%s_spmdef.mat', sub, runs{r})), '-struct', 'conds');
+    save(fullfile(subjDir, 'func', sprintf('sub-%s_run-%s_task-%s_spmdef.mat', sub, runs{r}, param.task)), '-struct', 'conds');
 end
 
 disp(['sub-' sub ' files copied'])
